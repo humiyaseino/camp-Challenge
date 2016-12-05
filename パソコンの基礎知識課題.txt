@@ -1,6 +1,6 @@
-PC名=Dell Inspiron 3558
-os=Windows10 Home 64Bit
-cpu=Intel(R)Core(TM)i-3-5005U CPU @ 2,00GHz
-メモリ=4096GB
-ディスプレイ=Intel(R) HD Graphics 5500
-hdd=TOSHIBA MQ01ABF050 500GB
+PC name = Dell Inspiron 3558
+OS = Windows10 Home 64Bit
+CPU = Intel(R)Core(TM)i-3-5005U CPU @ 2,00GHz
+Memory = 4096GB
+Display = Intel(R) HD Graphics 5500
+HDD = TOSHIBA MQ01ABF050 500GB
