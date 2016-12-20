@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <servlet>
+        <servlet-name>cookie</servlet-name>
+        <servlet-class>cookie.cookie</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>session</servlet-name>
+        <servlet-class>.session</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>session1</servlet-name>
+        <servlet-class>cookie.session1</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>cookie</servlet-name>
+        <url-pattern>/cookie</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>session</servlet-name>
+        <url-pattern>/session</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>session1</servlet-name>
+        <url-pattern>/session1</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
