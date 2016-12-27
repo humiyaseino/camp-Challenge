@@ -7,22 +7,18 @@ package databaseKadai;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.sql.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.text.ParseException;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author mypc
  */
-@WebServlet(name = "kadai9_2", urlPatterns = {"/kadai9_2"})
-public class kadai9_2 extends HttpServlet {
+public class kadai13_logout extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,63 +32,19 @@ public class kadai9_2 extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        Connection db_con = null;
-        PreparedStatement db_st = null;
-        java.sql.Date birthday = null;
-
-        request.setCharacterEncoding("UTF-8");
-        //キャスト
-        int age = Integer.parseInt(request.getParameter("txtage"));
-        try {
-            SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-            Date utilbirthday = date.parse(request.getParameter("txtbirthday"));
-            birthday = new java.sql.Date(utilbirthday.getTime());
-        } catch (ParseException e) {
-            System.out.print(e.getMessage());
-        } catch (Exception e) {
-            System.out.print(e.getMessage());
-        }
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            try {
-                Class.forName("com.mysql.jdbc.Driver").newInstance();
-                db_con = DriverManager.getConnection("jdbc:mysql://localhost:3306/challenge_db", "seino", "seino");
-                db_st = db_con.prepareStatement("insert into profiles values(?,?,?,?,?)");
-
-                db_st.setString(1, request.getParameter("txtprofilesID"));
-                db_st.setString(2, request.getParameter("txtname"));
-                db_st.setString(3, request.getParameter("txttell"));
-                db_st.setInt(4, age);
-                db_st.setDate(5, birthday);
-
-                db_st.executeUpdate();
-
-            } catch (ClassNotFoundException e) {
-                out.print(e.getMessage());
-            } catch (Exception e) {
-                out.print(e.getMessage());
-            } finally {
-                try {
-                    if (db_con == null) {
-                        db_con.close();
-                    }
-                    if (db_st == null) {
-                        db_st.close();
-                    }
-                } catch (SQLException e) {
-                    out.print(e.getMessage());
-                } catch (Exception e) {
-                    out.print(e.getMessage());
-                }
-            }
-
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet kadai9_2</title>");
+            out.println("<title>Servlet kadai13_logout</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet kadai9_2 at " + request.getContextPath() + "</h1>");
+            HttpSession hs = request.getSession();
+            hs.invalidate();
+            RequestDispatcher logout = request.getRequestDispatcher("/kadai/kadai13_login.jsp");
+            logout.forward(request, response);
+            
             out.println("</body>");
             out.println("</html>");
         }

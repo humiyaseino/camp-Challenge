@@ -59,12 +59,8 @@ public class kadai2 extends HttpServlet {
                 //db_st.setString(1, "age");
                 //db_st.setInt(1, 33);
                 db_st.executeUpdate();
-                /*while (db_rs.next()) {
-                    msg = (db_rs.getString("name"));
-                }*/
-                // db_con.close();デバック
                 db_con.close();
-               // db_rs.close();
+                //db_rs.close();
                 db_st.close();
                 msg = "入力完了";
             } catch (SQLException e_sql) {

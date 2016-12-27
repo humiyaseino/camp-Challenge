@@ -52,7 +52,7 @@ public class kadai1 extends HttpServlet {
             try {
                 db_con = DriverManager.getConnection("jdbc:mysql://localhost:3306/challenge_db", "seino", "seino");
                 msg = "データベース成功";
-                db_con.close();
+               // db_con.close();
             } catch (SQLException e_sql) {
                 msg = "sデータベースエラー";
             } catch (Exception e) {

@@ -83,6 +83,9 @@ public class kadai3 extends HttpServlet {
                     if (db_st == null) {
                         db_st.close();
                     }
+                    if (db_rs == null){
+                        db_rs.close();
+                    }
                     msg = "作業完了";
                 } catch (SQLException e_sql) {
                     msg = "s.closeエラー";

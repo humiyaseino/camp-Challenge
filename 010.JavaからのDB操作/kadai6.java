@@ -84,7 +84,7 @@ public class kadai6 extends HttpServlet {
             }
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet kadai6 at " + request.getContextPath() + "</h1>");
+            //fout.println();
             out.println("</body>");
             out.println("</html>");
         }
