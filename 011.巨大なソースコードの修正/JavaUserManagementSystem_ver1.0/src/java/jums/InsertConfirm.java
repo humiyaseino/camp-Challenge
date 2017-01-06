@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import jums.UserDateBeans;
+
 
 /**
  * insertconfirm.jspと対応するサーブレット
@@ -53,6 +55,17 @@ public class InsertConfirm extends HttpServlet {
             session.setAttribute("comment", comment);
             System.out.println("Session updated!!");
             
+            //UserDateBeansに登録
+            UserDateBeans udb = new UserDateBeans();
+            udb.setName(name);
+            udb.setYear(year);
+            udb.setMouth(month);
+            udb.setDay(day);
+            udb.setType(type);
+            udb.setTell(tell);
+            udb.setComment(comment);
+            request.setAttribute("udate", udb);
+
             request.getRequestDispatcher("/insertconfirm.jsp").forward(request, response);
         }catch(Exception e){
             request.setAttribute("error", e.getMessage());

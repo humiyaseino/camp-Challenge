@@ -2,6 +2,7 @@ package jums;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.io.Serializable;
 
 /**
  * ユーザー情報を持ちまわるJavaBeans
@@ -9,7 +10,7 @@ import java.util.Date;
  * @version 1.00
  * @author hayashi-s
  */
-public class UserDataDTO {
+public class UserDataDTO implements Serializable{
     private int userID;
     private String name;
     private Date birthday;

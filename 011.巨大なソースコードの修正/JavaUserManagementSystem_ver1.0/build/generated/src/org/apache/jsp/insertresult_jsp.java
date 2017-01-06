@@ -4,6 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 import javax.servlet.http.HttpSession;
+import jums.JumsHelper;
 
 public final class insertresult_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -43,6 +44,7 @@ public final class insertresult_jsp extends org.apache.jasper.runtime.HttpJspBas
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
       out.write('\n');
+      out.write('\n');
 
     HttpSession hs = request.getSession();
 
@@ -56,7 +58,7 @@ public final class insertresult_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("        ");
- if (session.getAttribute("insert") == "result") { 
+ if (!session.getAttribute("insert").equals("") && session.getAttribute("insert") == "result") { 
       out.write("\n");
       out.write("        <h1>登録結果</h1><br>\n");
       out.write("        名前:");
@@ -75,6 +77,10 @@ public final class insertresult_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.print( hs.getAttribute("comment"));
       out.write("<br>\n");
       out.write("        以上の内容で登録しました。<br>\n");
+      out.write("        <br><br>\n");
+      out.write("        ");
+      out.print(JumsHelper.getInstance().home());
+      out.write("\n");
       out.write("        ");
 } else {
       out.write("\n");

@@ -30,7 +30,7 @@ public class UserDataDAO {
             con = DBManager.getConnection();
             st =  con.prepareStatement("INSERT INTO user_t(name,birthday,tell,type,comment,newDate) VALUES(?,?,?,?,?,?)");
             st.setString(1, ud.getName());
-            st.setDate(2, new java.sql.Date(System.currentTimeMillis()));//指定のタイムスタンプ値からSQL格納用のDATE型に変更
+            st.setDate(2, new java.sql.Date(ud.getBirthday().getTime()));//指定のタイムスタンプ値からSQL格納用のDATE型に変更
             st.setString(3, ud.getTell());
             st.setInt(4, ud.getType());
             st.setString(5, ud.getComment());
@@ -38,8 +38,12 @@ public class UserDataDAO {
             st.executeUpdate();
             System.out.println("insert completed");
         }catch(SQLException e){
+            System.out.println("データベースの接続が失敗しました");
             System.out.println(e.getMessage());
             throw new SQLException(e);
+        }catch(Exception e) {
+            System.out.println("データベースの接続が失敗しました");
+            System.out.println(e.getMessage());
         }finally{
             if(con != null){
                 con.close();

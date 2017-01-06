@@ -5,15 +5,17 @@
  */
 package jums;
 
+import java.io.Serializable;
+
 /**
  *
  * @author mypc
  */
-public class UserDateBeans {
+public class UserDateBeans implements Serializable{
     private String name;
-    private int year;
-    private int mouth;
-    private int day;
+    private String year;
+    private String mouth;
+    private String day;
     private String type;
     private String tell;
     private String comment;
@@ -25,22 +27,22 @@ public class UserDateBeans {
     public void setName(String name){
         this.name = name;
     }
-    public int getYear(){
+    public String getYear(){
         return year;
     }
-    public void setYear(int year){
+    public void setYear(String year){
         this.year = year;
     }
-    public int getMonth(){
+    public String getMonth(){
         return mouth;
     }
-    public void setMouth(int mouth){
+    public void setMouth(String mouth){
         this.mouth = mouth;
     }
-    public int getDay(){
+    public String getDay(){
         return day;
     }
-    public void setDay(int day){
+    public void setDay(String day){
         this.day = day;
     }
     public String getType(){
@@ -58,7 +60,7 @@ public class UserDateBeans {
     public String getComment(){
         return comment;
     }
-    public void setComment(String ac){
+    public void setComment(String comment){
         this.comment = comment;
     }
 }

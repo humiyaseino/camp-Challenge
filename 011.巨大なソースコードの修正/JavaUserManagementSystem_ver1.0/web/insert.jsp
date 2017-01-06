@@ -18,21 +18,21 @@
 
         生年月日:　
         <select name="year">
-            <option value=""><%if (hs.getAttribute("year") != null){out.print(hs.getAttribute("year"));}else{out.print("----");}%></option>
+            <option value="<%if (hs.getAttribute("year") != null){out.print(hs.getAttribute("year"));}%>"><%if (hs.getAttribute("year") != null){out.print(hs.getAttribute("year"));}else{out.print("----");}%></option>
             <%
             for(int i=1950; i<=2010; i++){ %>
             <option value="<%=i%>"> <%=i%> </option>
             <% } %>
         </select>年
         <select name="month">
-            <option value=""><%if (hs.getAttribute("month") != null){out.print(hs.getAttribute("month"));}else{out.print("--");}%></option>
+            <option value="<%if (hs.getAttribute("month") != null){out.print(hs.getAttribute("month"));}%>"><%if (hs.getAttribute("month") != null){out.print(hs.getAttribute("month"));}else{out.print("--");}%></option>
             <%
             for(int i = 1; i<=12; i++){ %>
             <option value="<%=i%>"><%=i%></option>
             <% } %>
         </select>月
         <select name="day">
-            <option value=""><%if (hs.getAttribute("day") != null){out.print(hs.getAttribute("day"));}else{out.print("--");}%></option>
+            <option value="<%if (hs.getAttribute("day") != null){out.print(hs.getAttribute("day"));}%>"><%if (hs.getAttribute("day") != null){out.print(hs.getAttribute("day"));}else{out.print("--");}%></option>
             <%
             for(int i = 1; i<=31; i++){ %>
             <option value="<%=i%>"><%=i%></option>

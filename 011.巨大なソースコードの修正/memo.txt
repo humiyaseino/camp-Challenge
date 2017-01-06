@@ -1,0 +1,12 @@
+巨大なソース一弾
+作業概要
+1/5 すべてのページにトップページへのリンクを実装
+1/5 [insertresult.jsp]に直リンク防止処理実装
+1/5 [UserDateBeans]のjavabeans作成
+1/5 [insertconfirm.jsp]にフォームの未入力に対し警告文が出るように表示
+1/5 [insert.jsp]に記入済みのフォームに値を保持させる機能を実装
+
+1/6データベースに生年月日が登録されないバグ修正
+「InsertResult.javaにデータをセットする、UserDateDTOにシリアライズを追加、UserDateDAOにbirthdayをセット」
+1/6[insertconfirm.jsp]にセッションではなくjavabeansを使い処理するように修正「リクエストスコープを利用」
+1/6[insertresult.jsp]に直リンク防止処理を課題にそって修正

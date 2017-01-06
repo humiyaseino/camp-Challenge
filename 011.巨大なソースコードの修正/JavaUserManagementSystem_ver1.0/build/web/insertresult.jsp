@@ -11,7 +11,6 @@
         <title>JUMS登録結果画面</title>
     </head>
     <body>
-        <% if (session.getAttribute("insert") == "result") { %>
         <h1>登録結果</h1><br>
         名前:<%= hs.getAttribute("name")%><br>
         生年月日:<%= hs.getAttribute("year")+"年"+hs.getAttribute("month")+"月"+hs.getAttribute("day")+"日"%><br>
@@ -21,8 +20,5 @@
         以上の内容で登録しました。<br>
         <br><br>
         <%=JumsHelper.getInstance().home()%>
-        <%} else {%>
-        <h1>無効なアクセスです。</h1>
-        <%}%>
     </body>
 </html>

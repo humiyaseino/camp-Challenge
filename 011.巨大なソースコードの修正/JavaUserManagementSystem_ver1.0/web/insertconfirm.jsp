@@ -1,7 +1,9 @@
 <%@page import="javax.servlet.http.HttpSession" %>
 <%@page import="jums.JumsHelper" %>
+<%@page import="jums.UserDateBeans" %>
 <%
     HttpSession hs = request.getSession();
+    jums.UserDateBeans udb =(jums.UserDateBeans)request.getAttribute("udate");
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,7 +13,7 @@
         <title>JUMS登録確認画面</title>
     </head>
     <body>
-        <% if(!hs.getAttribute("name").equals("") && !hs.getAttribute("year").equals("") && !hs.getAttribute("month").equals("") && !hs.getAttribute("day").equals("") && hs.getAttribute("type") != null && !hs.getAttribute("tell").equals("") && !hs.getAttribute("comment").equals("")){ %>
+        <% if(!udb.getName().equals("") && !udb.getYear().equals("") && !udb.getMonth().equals("") && !udb.getDay().equals("") && udb.getType() != null && !udb.getTell().equals("") && !udb.getComment().equals("")) {%>
         <h1>登録確認</h1>
         名前:<%= hs.getAttribute("name")%><br>
         生年月日:<%= hs.getAttribute("year")+"年"+hs.getAttribute("month")+"月"+hs.getAttribute("day")+"日"%><br>
@@ -25,25 +27,25 @@
     <% }else{ %>
         <h1>入力が不完全です</h1>
         <h2>以下の項目を再確認してください<h2/>
-            <%if(hs.getAttribute("name").equals("")){%>
+            <%if(udb.getName().equals("")){%>
             <p>名前</p>
             <%}%>
-            <%if(hs.getAttribute("year").equals("")){%>
+            <%if(udb.getYear().equals("")){%>
             <p>年</p>
             <%}%>
-            <%if(hs.getAttribute("month").equals("")){%>
+            <%if(udb.getMonth().equals("")){%>
             <p>月</p>
             <%}%>
-            <%if(hs.getAttribute("day").equals("")){%>
+            <%if(udb.getDay().equals("")){%>
             <p>日</p>
             <%}%>
-            <%if(hs.getAttribute("type") == (null)){%>
+            <%if(udb.getType() == null){%>
             <p>種別</p>
             <%}%>
-            <%if(hs.getAttribute("tell").equals("")){%>
+            <%if(udb.getTell().equals("")){%>
             <p>電話番号</p>
             <%}%>
-            <%if(hs.getAttribute("comment").equals("")){%>
+            <%if(udb.getComment().equals("")){%>
             <p>自己紹介</p>
             <%}%>
     <% } %>
