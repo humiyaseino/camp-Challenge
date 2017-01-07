@@ -13,7 +13,7 @@
         <title>JUMS登録確認画面</title>
     </head>
     <body>
-        <% if(!udb.getName().equals("") && !udb.getYear().equals("") && !udb.getMonth().equals("") && !udb.getDay().equals("") && udb.getType() != null && !udb.getTell().equals("") && !udb.getComment().equals("")) {%>
+        <%if (udb.checkAll()){%>
         <h1>登録確認</h1>
         名前:<%= hs.getAttribute("name")%><br>
         生年月日:<%= hs.getAttribute("year")+"年"+hs.getAttribute("month")+"月"+hs.getAttribute("day")+"日"%><br>
@@ -22,32 +22,13 @@
         自己紹介:<%= hs.getAttribute("comment")%><br>
         上記の内容で登録します。よろしいですか？
         <form action="insertresult" method="POST">
+            <input type="hidden" name="ac"  value="<%= hs.getAttribute("ac")%>">
             <input type="submit" name="yes" value="はい">
         </form>
     <% }else{ %>
         <h1>入力が不完全です</h1>
         <h2>以下の項目を再確認してください<h2/>
-            <%if(udb.getName().equals("")){%>
-            <p>名前</p>
-            <%}%>
-            <%if(udb.getYear().equals("")){%>
-            <p>年</p>
-            <%}%>
-            <%if(udb.getMonth().equals("")){%>
-            <p>月</p>
-            <%}%>
-            <%if(udb.getDay().equals("")){%>
-            <p>日</p>
-            <%}%>
-            <%if(udb.getType() == null){%>
-            <p>種別</p>
-            <%}%>
-            <%if(udb.getTell().equals("")){%>
-            <p>電話番号</p>
-            <%}%>
-            <%if(udb.getComment().equals("")){%>
-            <p>自己紹介</p>
-            <%}%>
+               <% out.print(udb.checkType()); %>
     <% } %>
         <form action="insert" method="POST">
             <input type="submit" name="no" value="登録画面に戻る">

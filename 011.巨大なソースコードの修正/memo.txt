@@ -8,5 +8,8 @@
 
 1/6データベースに生年月日が登録されないバグ修正
 「InsertResult.javaにデータをセットする、UserDateDTOにシリアライズを追加、UserDateDAOにbirthdayをセット」
-1/6[insertconfirm.jsp]にセッションではなくjavabeansを使い処理するように修正「リクエストスコープを利用」
-1/6[insertresult.jsp]に直リンク防止処理を課題にそって修正
+1/6[insertconfirm.jsp]にセッションではなくjavabeansを使い処理するように修正
+1/6[insertresult.java]に直リンク防止処理を課題にそって修正
+
+1/7[insertconform.jsp]の分岐、表示処理をjavabeansで処理をするように設定
+1/7全体の見直し、デバックテスト。

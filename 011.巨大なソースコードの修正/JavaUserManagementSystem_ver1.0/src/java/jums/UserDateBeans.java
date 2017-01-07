@@ -6,6 +6,7 @@
 package jums;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,11 +15,13 @@ import java.io.Serializable;
 public class UserDateBeans implements Serializable{
     private String name;
     private String year;
-    private String mouth;
+    private String month;
     private String day;
     private String type;
     private String tell;
     private String comment;
+    private String types;
+    private ArrayList<String> arrayTypes = new ArrayList<String>();
     public void UserDateBeans(){}
     
     public String getName(){
@@ -34,10 +37,10 @@ public class UserDateBeans implements Serializable{
         this.year = year;
     }
     public String getMonth(){
-        return mouth;
+        return month;
     }
-    public void setMouth(String mouth){
-        this.mouth = mouth;
+    public void setMouth(String month){
+        this.month = month;
     }
     public String getDay(){
         return day;
@@ -63,4 +66,35 @@ public class UserDateBeans implements Serializable{
     public void setComment(String comment){
         this.comment = comment;
     }
+    //nullのチェック
+    public boolean checkAll(){
+        return !(name.isEmpty() || year.isEmpty() || month.isEmpty() || day.isEmpty() || type == null || tell.isEmpty() || comment.isEmpty());
+    }
+    //nullはどれかをStringで返す
+    public String checkType(){
+        if (name.isEmpty()){
+            arrayTypes.add("名前");
+        }
+        if (year.isEmpty()){
+            arrayTypes.add("年");
+        }
+        if (month.isEmpty()){
+            arrayTypes.add("月");
+        }
+        if (day.isEmpty()){
+            arrayTypes.add("日");
+        }
+        if (type == null){
+            arrayTypes.add("種別");
+        }
+        if (tell.isEmpty()){
+            arrayTypes.add("電話番号");
+        }
+        if (comment.isEmpty()){
+            arrayTypes.add("自己紹介");
+        }
+        types = arrayTypes.toString();
+        return types;
+    }
 }
+

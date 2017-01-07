@@ -5,6 +5,7 @@ import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 import javax.servlet.http.HttpSession;
 import jums.JumsHelper;
+import jums.UserDateBeans;
 
 public final class insertconfirm_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -43,10 +44,12 @@ public final class insertconfirm_jsp extends org.apache.jasper.runtime.HttpJspBa
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write('\n');
-      out.write('\n');
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
 
     HttpSession hs = request.getSession();
+    jums.UserDateBeans udb =(jums.UserDateBeans)request.getAttribute("udate");
 
       out.write("\n");
       out.write("\n");
@@ -58,7 +61,7 @@ public final class insertconfirm_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("        ");
- if(!hs.getAttribute("name").equals("")){ 
+if (udb.checkAll()){
       out.write("\n");
       out.write("        <h1>登録確認</h1>\n");
       out.write("        名前:");
@@ -78,6 +81,9 @@ public final class insertconfirm_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("<br>\n");
       out.write("        上記の内容で登録します。よろしいですか？\n");
       out.write("        <form action=\"insertresult\" method=\"POST\">\n");
+      out.write("            <input type=\"hidden\" name=\"ac\"  value=\"");
+      out.print( hs.getAttribute("ac"));
+      out.write("\">\n");
       out.write("            <input type=\"submit\" name=\"yes\" value=\"はい\">\n");
       out.write("        </form>\n");
       out.write("    ");
@@ -85,12 +91,8 @@ public final class insertconfirm_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("\n");
       out.write("        <h1>入力が不完全です</h1>\n");
       out.write("        <h2>以下の項目を再確認してください<h2/>\n");
-      out.write("            ");
-if(hs.getAttribute("name").equals("")){
-      out.write("\n");
-      out.write("            <p>名前</p>\n");
-      out.write("            ");
-}
+      out.write("               ");
+ out.print(udb.checkType()); 
       out.write("\n");
       out.write("    ");
  } 

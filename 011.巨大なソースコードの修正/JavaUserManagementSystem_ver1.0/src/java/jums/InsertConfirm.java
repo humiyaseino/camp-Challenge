@@ -35,7 +35,6 @@ public class InsertConfirm extends HttpServlet {
             if(accesschk ==null || (Integer)session.getAttribute("ac")!=Integer.parseInt(accesschk)){
                 throw new Exception("不正なアクセスです");
             }
-            
             //フォームからの入力を取得
             String name = request.getParameter("name");
             String year = request.getParameter("year");

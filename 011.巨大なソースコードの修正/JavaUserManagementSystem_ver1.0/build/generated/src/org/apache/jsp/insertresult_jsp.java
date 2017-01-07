@@ -57,9 +57,6 @@ public final class insertresult_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("        <title>JUMS登録結果画面</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
-      out.write("        ");
- if (!session.getAttribute("insert").equals("") && session.getAttribute("insert") == "result") { 
-      out.write("\n");
       out.write("        <h1>登録結果</h1><br>\n");
       out.write("        名前:");
       out.print( hs.getAttribute("name"));
@@ -80,13 +77,6 @@ public final class insertresult_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("        <br><br>\n");
       out.write("        ");
       out.print(JumsHelper.getInstance().home());
-      out.write("\n");
-      out.write("        ");
-} else {
-      out.write("\n");
-      out.write("        <h1>無効なアクセスです。</h1>\n");
-      out.write("        ");
-}
       out.write("\n");
       out.write("    </body>\n");
       out.write("</html>\n");

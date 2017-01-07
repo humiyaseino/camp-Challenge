@@ -38,12 +38,9 @@ public class UserDataDAO {
             st.executeUpdate();
             System.out.println("insert completed");
         }catch(SQLException e){
-            System.out.println("データベースの接続が失敗しました");
+            System.out.println("データベースの接続に失敗しました");
             System.out.println(e.getMessage());
             throw new SQLException(e);
-        }catch(Exception e) {
-            System.out.println("データベースの接続が失敗しました");
-            System.out.println(e.getMessage());
         }finally{
             if(con != null){
                 con.close();
