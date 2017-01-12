@@ -54,17 +54,13 @@ public class kadai13_2 extends HttpServlet {
                 db_st.setString(2, request.getParameter("txtpassword"));
 
                 db_rs = db_st.executeQuery();
-                if (hs.getAttribute("login") == null){
-                    
-                }else if (db_rs.next()) {
+                //if () {
+
+                if (hs.getAttribute("login") != null && db_rs.next()) {
                     hs.setAttribute("login-e", null);
                     hs.setAttribute("login", "in");
-                    RequestDispatcher product = request.getRequestDispatcher("/kadai/kadai13_login.jsp");
-                    product.forward(request, response);
                 } else {
                     hs.setAttribute("login-e", "error");
-                    RequestDispatcher product = request.getRequestDispatcher("/kadai/kadai13_login.jsp");
-                    product.forward(request, response);
                 }
 
             } catch (ClassNotFoundException e) {
@@ -90,6 +86,8 @@ public class kadai13_2 extends HttpServlet {
                     out.print(e.getMessage());
                 }
             }
+            RequestDispatcher product = request.getRequestDispatcher("/kadai/kadai13_login.jsp");
+            product.forward(request, response);
 
             out.println("</head>");
             out.println("<body>");
