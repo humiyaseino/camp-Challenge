@@ -70,11 +70,12 @@ public class kadai13_4touroku extends HttpServlet {
                 out.print(e.getMessage());
             } catch (Exception e) {
                 out.print(e.getMessage());
-            }
-            
+            }            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet kadai13_4touroku at " + request.getContextPath() + "</h1>");
+            out.println("<form action=/database_control/kadai13_2 method=post>");
+            out.println("<input type=submit value=メインページへ>");
+            out.println("</form>");
             out.println("</body>");
             out.println("</html>");
         }

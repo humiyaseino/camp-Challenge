@@ -37,14 +37,14 @@ public class kadai13_logout extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet kadai13_logout</title>");            
+            out.println("<title>Servlet kadai13_logout</title>");
             out.println("</head>");
             out.println("<body>");
             HttpSession hs = request.getSession();
             hs.invalidate();
-            RequestDispatcher logout = request.getRequestDispatcher("/kadai/kadai13_login.jsp");
-            logout.forward(request, response);
-            
+            //RequestDispatcher logout = request.getRequestDispatcher("/kadai/kadai13_login.jsp");
+            //logout.forward(request, response);
+            response.sendRedirect("/database_control/kadai/kadai13_login.jsp");
             out.println("</body>");
             out.println("</html>");
         }

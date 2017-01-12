@@ -43,6 +43,7 @@ public class kadai13_2 extends HttpServlet {
             Connection db_con = null;
             PreparedStatement db_st = null;
             ResultSet db_rs = null;
+            HttpSession hs = request.getSession();
             //RequestDispatcher product = request.getRequestDispatcher("/database_control/kadai/kadai13_3product.jsp");
 
             try {
@@ -53,16 +54,19 @@ public class kadai13_2 extends HttpServlet {
                 db_st.setString(2, request.getParameter("txtpassword"));
 
                 db_rs = db_st.executeQuery();
-                db_rs.next();
-                String name = db_rs.getString("name");
-                String password = db_rs.getString("password");
-                if (name != null && password != null) {
-                    HttpSession hs = request.getSession();
-                    String login = "in";
-                    hs.setAttribute("login",login);
+                if (hs.getAttribute("login") == null){
+                    
+                }else if (db_rs.next()) {
+                    hs.setAttribute("login-e", null);
+                    hs.setAttribute("login", "in");
+                    RequestDispatcher product = request.getRequestDispatcher("/kadai/kadai13_login.jsp");
+                    product.forward(request, response);
+                } else {
+                    hs.setAttribute("login-e", "error");
                     RequestDispatcher product = request.getRequestDispatcher("/kadai/kadai13_login.jsp");
                     product.forward(request, response);
                 }
+
             } catch (ClassNotFoundException e) {
                 out.print(e.getMessage());
             } catch (SQLException e) {

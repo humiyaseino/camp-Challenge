@@ -44,12 +44,17 @@ public class kadai13_5itiran extends HttpServlet {
                 db_con = DriverManager.getConnection("jdbc:mysql://localhost:3306/challenge_db", "seino", "seino");
                 db_st = db_con.prepareStatement("select * from product");
                 db_rs = db_st.executeQuery();
-               
-                while(db_rs.next()){
-                    out.print("商品ID"+db_rs.getString("productID")+"<br>");
-                    out.print("名前"+db_rs.getString("name")+"<br>");
-                    out.print("値段"+db_rs.getString("price")+"<br>");
-                    out.print("在庫"+db_rs.getString("stock")+"<br>");
+
+                out.println("<title>Servlet kadai13_5itiran</title>");
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<form action=/database_control/kadai13_2 method=post>");
+                out.println("<input type=submit value=メインページへ><br>");
+                while (db_rs.next()) {
+                    out.print("商品ID" + db_rs.getString("productID") + "<br>");
+                    out.print("名前" + db_rs.getString("name") + "<br>");
+                    out.print("値段" + db_rs.getString("price") + "<br>");
+                    out.print("在庫" + db_rs.getString("stock") + "<br>");
                 }
             } catch (ClassNotFoundException e) {
                 out.print(e.getMessage());
@@ -71,10 +76,6 @@ public class kadai13_5itiran extends HttpServlet {
                     out.print(e.getMessage());
                 }
             }
-            out.println("<title>Servlet kadai13_5itiran</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet kadai13_5itiran at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
