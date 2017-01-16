@@ -13,3 +13,42 @@
 
 1/7[insertconform.jsp]の分岐、表示処理をjavabeansで処理をするように設定
 1/7全体の見直し、デバックテスト。
+
+
+巨大なソースの修正第２弾
+1/13	・全体の仕様の把握
+
+	・修正点の洗い出し
+	（delete.updateの機能がない、検索ページのエラー多数、機能の不足)
+
+	・delete、update機能をdatabaseDTOに実装、それに伴うページ移動を各jspに追加
+	（delete,update,search,searchresult,deleteresult,updateresult)
+
+	・resultdetail.javaがIDを受け取らないエラーの修正
+
+	・検索機能の表示形式の変更、それに伴うDatabaseDAO検索機能修正
+
+	・searchで「未入力のとき全体表示」の機能をdatabaseDAOに追加
+
+	・update,deleteの各ページからsearchresultに戻るときの処理をsearchresultに追加
+	
+	・searchで条件が一つの時（名前だけなど）にエラーがでるのでその条件だけで検索できるようにdatabaseDTOを修正
+
+	課題
+	・searchresultのIDの受け渡しがクエリストリングのためIDがアドレスに表示してる
+	ーgetで受けてok
+	・仕様書には詳細に全カラム表示と書いてあったがIDを表示させるのか
+	ーIDは表示させない
+
+1/16	
+	・update,delete,searchresultの直リンク防止ができていないので修正
+
+	・update,deleteの各ページからsearchresultに戻るボタンを修正
+	
+	・新しいライブラリjode.timeを使ってbirthday「date」からint「年」「月」「日」をとれるように修正
+	(update.jspのvalueに使用、やや動作が重い）
+
+	
+	
+	
+

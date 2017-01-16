@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -25,30 +26,57 @@ public class SearchResult extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try{
+            //セッション開始
+            HttpSession session = request.getSession();
+        try {
             request.setCharacterEncoding("UTF-8");//リクエストパラメータの文字コードをUTF-8に変更
-        
+            
+            //アクセスルートチェック
+            String accesschk = request.getParameter("ac");
+            if(accesschk ==null || (Integer)session.getAttribute("ac")!=Integer.parseInt(accesschk)){
+                throw new Exception("不正なアクセスです");
+            }
             //フォームからの入力を取得して、JavaBeansに格納
             UserDataBeans udb = new UserDataBeans();
-            udb.setName(request.getParameter("name"));
-            udb.setYear(request.getParameter("year"));
-            udb.setType(request.getParameter("type"));
+            boolean requestGetFlg = false;
 
-            //DTOオブジェクトにマッピング。DB専用のパラメータに変換
+            if(request.getParameter("name") != null && !request.getParameter("name").equals("")) {
+                udb.setName(request.getParameter("name"));
+                requestGetFlg = true;
+            }
+            if(request.getParameter("year") != null){
+                udb.setYear(request.getParameter("year"));
+                requestGetFlg = true;
+            }
+            if (request.getParameter("type") != null){
+                udb.setType(request.getParameter("type"));
+                requestGetFlg = true;
+            }
+            
+            if(requestGetFlg){
+                session.removeAttribute("searchData");
+            }
+            //
             UserDataDTO searchData = new UserDataDTO();
-            udb.UD2DTOMapping(searchData);
             
+            if (session.getAttribute("searchData") != null) {
+                searchData = (UserDataDTO)session.getAttribute("searchData");
+            } else {
+                //DTOオブジェクトにマッピング。DB専用のパラメータに変換
+                
+                udb.UD2DTOMapping(searchData);
+            }
             UserDataDTO resultData = UserDataDAO.getInstance().search(searchData);
-            request.setAttribute("resultData", resultData);
-            
+            session.setAttribute("resultData", resultData);
+            session.setAttribute("searchData", searchData);
+
             request.getRequestDispatcher("/searchresult.jsp").forward(request, response);
-        }catch(Exception e){
+        } catch (Exception e) {
             //何らかの理由で失敗したらエラーページにエラー文を渡して表示。想定は不正なアクセスとDBエラー
             request.setAttribute("error", e.getMessage());
             request.getRequestDispatcher("/error.jsp").forward(request, response);
         }
-        
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

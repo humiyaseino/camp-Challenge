@@ -1,6 +1,8 @@
 <%@page import="jums.JumsHelper"
-        import="jums.UserDataDTO" %>
+        import="jums.UserDataDTO" 
+         import="javax.servlet.http.HttpSession" %>
 <%
+    HttpSession hs = (HttpSession)request.getSession();
     JumsHelper jh = JumsHelper.getInstance();
     UserDataDTO udd = (UserDataDTO)request.getAttribute("resultData");
 %>
@@ -13,7 +15,7 @@
     </head>
     <body>
     <h1>削除確認</h1>
-    以下の内容を削除します。よろしいですか？
+    以下の内容を削除します。よろしいですか？<br>
     名前:<%= udd.getName()%><br>
     生年月日:<%= udd.getBirthday()%><br>
     種別:<%= udd.getType()%><br>
@@ -22,10 +24,16 @@
     登録日時:<%= udd.getNewDate()%><br>
     
     <form action="DeleteResult" method="POST">
+      <input type="hidden" name="ac"  value="<%= hs.getAttribute("ac")%>">
+      <input type="hidden" name="paramID" value="<%=udd.getUserID()%>">
       <input type="submit" name="YES" value="はい"style="width:100px">
     </form><br>
     <form action="ResultDetail" method="POST">
+      <input type="hidden" name="ac"  value="<%= hs.getAttribute("ac")%>">
+      <input type="hidden" name="paramID" value="<%=udd.getUserID()%>">
       <input type="submit" name="NO" value="詳細画面に戻る"style="width:100px">
     </form>
     </body>
+    <br>
+    <%=jh.home()%>
 </html>

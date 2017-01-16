@@ -3,6 +3,7 @@ package jums;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.*;
+import org.joda.time.DateTime;//時間取得系ライブラリjode.time
 import java.io.Serializable;
 
 /**
@@ -25,9 +26,6 @@ public class UserDataDTO implements Serializable{
     private ArrayList<Date> allBirthday = new ArrayList();
     private ArrayList<Integer> allType = new ArrayList();
     private ArrayList<Timestamp> allNewDate = new ArrayList();
-    
-    //全件表示のフラグ
-    private boolean allFlg;
     
     public int getUserID() {
         return userID;
@@ -150,11 +148,21 @@ public class UserDataDTO implements Serializable{
         this.allNewDate.add(NewDate);
     }
     
+    //birthdayから年月日を取得
+    public int getYear(Date birthday){
+        DateTime dt = new DateTime(birthday);
+        int year = dt.getYear();
+        return year;
+    }
+    public int getMonth(Date birthday){
+        DateTime dt = new DateTime(birthday);
+        int Month = dt.getMonthOfYear();
+        return Month;
+    }
+    public int getDay(Date birthday){
+        DateTime dt = new DateTime(birthday);
+        int Day = dt.getDayOfMonth();
+        return Day;
+    }
     
-    public boolean getAllFlg(){
-        return allFlg;
-    }
-    public void setAllFlg(boolean allFlg){
-        this.allFlg = allFlg;
-    }
 }

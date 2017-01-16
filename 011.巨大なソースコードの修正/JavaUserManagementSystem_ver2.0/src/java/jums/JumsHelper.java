@@ -11,6 +11,7 @@ public class JumsHelper {
     //トップへのリンクを定数として設定
     private final String homeURL = "index.jsp";
     
+    
     public static JumsHelper getInstance(){
         return new JumsHelper();
     }
@@ -19,6 +20,7 @@ public class JumsHelper {
     public String home(){
         return "<a href=\""+homeURL+"\">トップへ戻る</a>";
     }
+    
     
     /**
      * 入力されたデータのうち未入力項目がある場合、チェックリストにしたがいどの項目が

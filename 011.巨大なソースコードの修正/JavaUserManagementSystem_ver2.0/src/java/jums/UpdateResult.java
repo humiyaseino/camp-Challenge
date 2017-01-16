@@ -6,6 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 /**
  *
@@ -26,19 +28,59 @@ public class UpdateResult extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+
+        //セッションスタート
+        HttpSession session = request.getSession();
+
         try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UpdateResult</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet UpdateResult at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {
-            out.close();
+            request.setCharacterEncoding("UTF-8");//リクエストパラメータの文字コードをUTF-8に変更
+
+            //アクセスルートチェック
+            String accesschk = request.getParameter("ac");
+            if (accesschk == null || (Integer) session.getAttribute("ac") != Integer.parseInt(accesschk)) {
+                throw new Exception("不正なアクセスです");
+            }
+
+            //フォームからの入力を取得して、JavaBeansに格納
+            UserDataBeans udb = new UserDataBeans();
+            udb.setName(request.getParameter("name"));
+            udb.setYear(request.getParameter("year"));
+            udb.setMonth(request.getParameter("month"));
+            udb.setDay(request.getParameter("day"));
+            udb.setType(request.getParameter("type"));
+            udb.setTell(request.getParameter("tell"));
+            udb.setComment(request.getParameter("comment"));
+
+            //未入力チェック
+            ArrayList<String> chkList = udb.chkproperties();
+            jums.JumsHelper jh = JumsHelper.getInstance();
+            if (chkList.size() == 0) {
+
+                UserDataDTO udd = new UserDataDTO();
+
+                int paramID = Integer.parseInt(request.getParameter("paramID"));
+                udd.setUserID(paramID);
+
+                udb.UD2DTOMapping(udd);
+
+                //DBへデータの挿入
+                UserDataDAO.getInstance().update(udd);
+                
+                //セッションのデータ消去
+                session.removeAttribute("resultData");
+
+                //結果画面での表示用に入力パラメータ―をリクエストパラメータとして保持
+                request.setAttribute("udb", udb);
+
+                request.getRequestDispatcher("/updateresult.jsp").forward(request, response);
+            } else {
+                request.setAttribute("error", jh.chkinput(chkList));
+            request.getRequestDispatcher("/error.jsp").forward(request, response);
+            }
+
+        } catch (Exception e) {
+            request.setAttribute("error", e.getMessage());
+            request.getRequestDispatcher("/error.jsp").forward(request, response);
         }
     }
 
