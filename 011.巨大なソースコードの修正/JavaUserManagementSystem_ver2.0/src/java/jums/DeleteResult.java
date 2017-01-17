@@ -42,8 +42,6 @@ public class DeleteResult extends HttpServlet {
 
             //DBへデータの挿入
             UserDataDAO.getInstance().delete(paramID);
-            //セッションのデータ消去
-            session.removeAttribute("resultData");
 
             request.getRequestDispatcher("/deleteresult.jsp").forward(request, response);
         } catch (Exception e) {

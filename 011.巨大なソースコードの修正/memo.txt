@@ -21,7 +21,7 @@
 	・修正点の洗い出し
 	（delete.updateの機能がない、検索ページのエラー多数、機能の不足)
 
-	・delete、update機能をdatabaseDTOに実装、それに伴うページ移動を各jspに追加
+	・delete、update機能をdatabaseDAOに実装、それに伴うページ移動を各jspに追加
 	（delete,update,search,searchresult,deleteresult,updateresult)
 
 	・resultdetail.javaがIDを受け取らないエラーの修正
@@ -32,13 +32,13 @@
 
 	・update,deleteの各ページからsearchresultに戻るときの処理をsearchresultに追加
 	
-	・searchで条件が一つの時（名前だけなど）にエラーがでるのでその条件だけで検索できるようにdatabaseDTOを修正
+	・searchで条件が一つの時（名前だけなど）にエラーがでるのでその条件だけで検索できるようにdatabaseDAOを修正
 
 	課題
 	・searchresultのIDの受け渡しがクエリストリングのためIDがアドレスに表示してる
-	ーgetで受けてok
+	ーgetで受けてok	1/16
 	・仕様書には詳細に全カラム表示と書いてあったがIDを表示させるのか
-	ーIDは表示させない
+	ーIDは表示させない 1/16
 
 1/16	
 	・update,delete,searchresultの直リンク防止ができていないので修正
@@ -48,7 +48,11 @@
 	・新しいライブラリjode.timeを使ってbirthday「date」からint「年」「月」「日」をとれるように修正
 	(update.jspのvalueに使用、やや動作が重い）
 
-	
-	
-	
+1/17 	
+	・各jspにて種別「type」を番号ではなく「営業」や「エンジニア」などちゃんと表示するよう修正
 
+	・各jspでボディの下にホームへ戻るを設置していたので修正
+
+	・全体のエラー、仕様の再チェック
+
+	　巨大なソース第二弾1/17日17:26に提出しました。

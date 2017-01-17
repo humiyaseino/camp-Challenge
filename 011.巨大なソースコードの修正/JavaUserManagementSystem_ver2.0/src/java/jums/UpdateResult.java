@@ -65,9 +65,6 @@ public class UpdateResult extends HttpServlet {
 
                 //DBへデータの挿入
                 UserDataDAO.getInstance().update(udd);
-                
-                //セッションのデータ消去
-                session.removeAttribute("resultData");
 
                 //結果画面での表示用に入力パラメータ―をリクエストパラメータとして保持
                 request.setAttribute("udb", udb);
@@ -75,7 +72,7 @@ public class UpdateResult extends HttpServlet {
                 request.getRequestDispatcher("/updateresult.jsp").forward(request, response);
             } else {
                 request.setAttribute("error", jh.chkinput(chkList));
-            request.getRequestDispatcher("/error.jsp").forward(request, response);
+                request.getRequestDispatcher("/error.jsp").forward(request, response);
             }
 
         } catch (Exception e) {

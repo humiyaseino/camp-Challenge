@@ -32,9 +32,7 @@ public class ResultDetail extends HttpServlet {
             //前回のページからIDを取得
             
             int paramID = 0;
-            if(request.getParameter("param") != null){
-                paramID = Integer.parseInt(request.getParameter("param"));
-            }else if(request.getParameter("paramID") != null){
+            if(request.getParameter("paramID") != null){
                 paramID = Integer.parseInt(request.getParameter("paramID"));
             }
             

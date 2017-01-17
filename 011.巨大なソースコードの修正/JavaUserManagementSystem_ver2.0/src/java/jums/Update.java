@@ -32,7 +32,6 @@ public class Update extends HttpServlet {
         try {
             request.setCharacterEncoding("UTF-8");//リクエストパラメータの文字コードをUTF-8に変更
             
-            
             //アクセスルートチェック
             HttpSession session = request.getSession();
             String accesschk = request.getParameter("ac");

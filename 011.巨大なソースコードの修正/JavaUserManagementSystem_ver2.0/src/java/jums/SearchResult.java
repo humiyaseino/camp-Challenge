@@ -39,7 +39,7 @@ public class SearchResult extends HttpServlet {
             //フォームからの入力を取得して、JavaBeansに格納
             UserDataBeans udb = new UserDataBeans();
             boolean requestGetFlg = false;
-
+            //入力箇所のチェック
             if(request.getParameter("name") != null && !request.getParameter("name").equals("")) {
                 udb.setName(request.getParameter("name"));
                 requestGetFlg = true;
@@ -52,22 +52,23 @@ public class SearchResult extends HttpServlet {
                 udb.setType(request.getParameter("type"));
                 requestGetFlg = true;
             }
-            
+   
             if(requestGetFlg){
                 session.removeAttribute("searchData");
             }
-            //
+            
             UserDataDTO searchData = new UserDataDTO();
             
             if (session.getAttribute("searchData") != null) {
+                //update,deleteからreturnしたときのパラメータ
                 searchData = (UserDataDTO)session.getAttribute("searchData");
             } else {
                 //DTOオブジェクトにマッピング。DB専用のパラメータに変換
-                
                 udb.UD2DTOMapping(searchData);
             }
             UserDataDTO resultData = UserDataDAO.getInstance().search(searchData);
-            session.setAttribute("resultData", resultData);
+            
+            request.setAttribute("resultData", resultData);
             session.setAttribute("searchData", searchData);
 
             request.getRequestDispatcher("/searchresult.jsp").forward(request, response);

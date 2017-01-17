@@ -17,10 +17,10 @@
     <body>
     <h1>削除確認</h1>
     削除しました。<br>
-    </body><br>
     <form action="SearchResult" method="post">
         <input type="hidden" name="ac" value="<%=hs.getAttribute("ac")%>"> 
         <input type="submit" name="searchresult" value="検索結果へ戻る">
-    </form>
+    </form><br>
     <%=jh.home()%>
+    </body>
 </html>

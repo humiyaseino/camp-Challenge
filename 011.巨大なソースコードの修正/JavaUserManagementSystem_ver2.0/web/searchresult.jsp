@@ -2,7 +2,7 @@
         import="jums.UserDataDTO" %>
 <%
     JumsHelper jh = JumsHelper.getInstance();
-    UserDataDTO udd = (UserDataDTO)session.getAttribute("resultData");
+    UserDataDTO udd = (UserDataDTO)request.getAttribute("resultData");
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -25,14 +25,14 @@
                 <th>登録日時</th>
             </tr>
             <tr>
-                <td><a href="ResultDetail?param=<%=udd.getAllUserID(i)%>"id=<%=udd.getAllUserID(i)%>><%= udd.getAllName(i)%></a></td>
+                <td><a href="ResultDetail?paramID=<%=udd.getAllUserID(i)%>"id=<%=udd.getAllUserID(i)%>><%= udd.getAllName(i)%></a></td>
                 <td><%= udd.getAllBirthday(i)%></td>
-                <td><%= udd.getAllType(i)%></td>
+                <td><%= jh.exTypenum(udd.getAllType(i))%></td>
                 <td><%= udd.getAllNewDate(i)%></td>
             </tr>
          </table>
         <%}%>
+        <a href="Search">検索画面へ戻る</a><br>
+        <%=jh.home()%>
     </body>
-    <a href="Search">検索画面へ戻る</a><br>
-    <%=jh.home()%>
 </html>
