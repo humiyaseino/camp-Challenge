@@ -18,7 +18,7 @@ public class Ckadai5 {
      */
     public static void main(String[] args) throws UnsupportedEncodingException {
         // TODO code application logic here
-        String name = "せいの";
+        String name = "ｓｓｓ";
         byte[] nameb = name.getBytes("UTF-8");
         int namei = name.length();
         System.out.println("名前は" + name + "文字数は" + namei + "バイト数はUTF-8で" + nameb + "です");
