@@ -25,9 +25,9 @@ public class Kadai1 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        String name = "清野";
-        String birth = "1987年12月3日です";
-        int age = 29;
+        String name = "S_H";
+        String birth = "2024年11月3日です";
+        int age = 19;
 
         for (int i = 0; i < 10; i++) {
             flg = printprf(name, birth, age);
